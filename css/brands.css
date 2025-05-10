@@ -664,3 +664,17 @@
     --button-background: #000000;
     --button-border: 1px solid #FFFFFF;
 }
+
+/* Apocalyptic Apes */
+.button-apocalyptic-apes {
+    --button-text: #14fc8e;
+    --button-background: #0c042c;
+    --button-border: 1px solid #FFFFFF;
+}
+
+/* OpenSea */
+.button-opensea {
+  --button-text:#FFFFFF;
+  --button-background:#0086FF;
+  --button-border:1px solid #0086FF;
+}
