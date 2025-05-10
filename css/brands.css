@@ -631,3 +631,36 @@
 	--button-background:#0B5CFF;
   --button-border:1px solid #FFFFFF;
 }
+
+/* ThrillKicker Partner Store */
+.button-thrillkicker-partner-store {
+    --button-text: #ffffff;
+    --button-background: #000000;
+    --button-border: 1px solid #FFFFFF;
+}
+
+/* Apocalyptic Rations */
+.button-apocalyptic-rations {
+    --button-text: #000000;
+    --button-background: #d2484b;
+}
+
+/* Z HOVAK */
+.button-z-hovak {
+    --button-text: #000000;
+    --button-background: #ffcd00;
+    --button-border: 1px solid #000000;
+}
+
+/* Modernist */
+.button-modernist {
+    --button-text: #000000;
+    --button-background: #ac70fd;
+}
+
+/* MOOON.PARTY */
+.button-mooon-party {
+    --button-text: #03ff2a;
+    --button-background: #000000;
+    --button-border: 1px solid #FFFFFF;
+}
