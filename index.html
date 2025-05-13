@@ -45,6 +45,7 @@
   </head>
 
 <body>
+    <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
 
     <div class="container">
         <div class="column">
@@ -476,6 +477,26 @@
     
     </div>
   </div>
+
+  <script>
+  const html = document.documentElement;
+  const toggleBtn = document.getElementById('theme-toggle');
+
+  // Load saved preference
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) html.className = savedTheme;
+
+  toggleBtn.addEventListener('click', () => {
+    let current = html.className;
+    let next = current === 'theme-auto' ? 'theme-light' :
+               current === 'theme-light' ? 'theme-dark' :
+               'theme-auto';
+
+    html.className = next;
+    localStorage.setItem('theme', next);
+  });
+</script>
+
 
 </body>
 
