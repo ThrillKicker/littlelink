@@ -632,49 +632,58 @@
   --button-border:1px solid #FFFFFF;
 }
 
-/* ThrillKicker Partner Store */
+/* ThrillKicker Theme Style */
+.button-thrillkicker {
+    --button-text: #ffffff;
+    --button-background: #000000;
+    --button-border: 1px solid #FFFFFF;
+}
+
+/* ThrillKicker Partner Store * /
 .button-thrillkicker-partner-store {
     --button-text: #ffffff;
     --button-background: #000000;
     --button-border: 1px solid #FFFFFF;
 }
 
-/* Apocalyptic Rations */
+/* Apocalyptic Rations * /
 .button-apocalyptic-rations {
     --button-text: #000000;
     --button-background: #d2484b;
 }
 
-/* Z HOVAK */
+/* Z HOVAK * /
 .button-z-hovak {
     --button-text: #000000;
     --button-background: #ffcd00;
     --button-border: 1px solid #000000;
 }
 
-/* Modernist */
+/* Modernist * /
 .button-modernist {
     --button-text: #000000;
     --button-background: #ac70fd;
 }
 
-/* MOOON.PARTY */
+/* MOOON.PARTY * /
 .button-mooon-party {
     --button-text: #03ff2a;
     --button-background: #000000;
     --button-border: 1px solid #FFFFFF;
 }
 
-/* Apocalyptic Apes */
+/* Apocalyptic Apes * /
 .button-apocalyptic-apes {
     --button-text: #14fc8e;
     --button-background: #0c042c;
     --button-border: 1px solid #FFFFFF;
 }
 
-/* OpenSea */
+/* OpenSea * /
 .button-opensea {
   --button-text:#FFFFFF;
   --button-background:#0086FF;
   --button-border:1px solid #0086FF;
 }
+
+*/
