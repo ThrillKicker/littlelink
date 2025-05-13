@@ -48,10 +48,11 @@
 
     <!-- BEGIN theme toggle button -->
     <!-- Theme Toggle Button -->
-    <button id="theme-toggle" class="theme-toggle-button" aria-label="Toggle Theme">
-        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3v1.5M12 19.5V21M4.219 4.219l1.061 1.061M18.719 18.719l1.061 1.061M3 12h1.5M19.5 12H21M4.219 19.781l1.061-1.061M18.719 5.281l1.061-1.061M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z"/>
-        </svg>
+    <button id="theme-toggle" aria-label="Toggle Theme">
+      <svg id="theme-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path id="theme-icon-path" d="" />
+      </svg>
     </button>
     <!-- END theme toggle button -->
 
@@ -486,22 +487,30 @@
     const html = document.documentElement;
     const toggleBtn = document.getElementById('theme-toggle');
     const avatarImg = document.getElementById('avatar');
-
+    const iconPath = document.getElementById('theme-icon-path');
+  
     const icons = {
       sun: "M12 3v1.5M12 19.5V21M4.219 4.219l1.061 1.061M18.719 18.719l1.061 1.061M3 12h1.5M19.5 12H21M4.219 19.781l1.061-1.061M18.719 5.281l1.061-1.061M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z",
       moon: "M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
     };
-
+  
     function applyTheme(theme) {
       html.className = theme;
       localStorage.setItem('theme', theme);
+  
       const suffix = theme === 'theme-dark' ? 'dark' : 'light';
+      const icon = theme === 'theme-dark' ? icons.sun : icons.moon;
+  
       if (avatarImg) {
         avatarImg.src = `images/avatar-${suffix}.png`;
         avatarImg.srcset = `images/avatar-${suffix}@2x.png 2x`;
       }
+  
+      if (iconPath) {
+        iconPath.setAttribute('d', icon);
+      }
     }
-
+  
     // Determine initial theme
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme) {
@@ -510,7 +519,7 @@
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       applyTheme(prefersDark ? 'theme-dark' : 'theme-light');
     }
-
+  
     // Toggle on click
     toggleBtn.addEventListener('click', () => {
       const current = html.className;
@@ -518,6 +527,7 @@
       applyTheme(next);
     });
   </script>
+
 
 </body>
 
