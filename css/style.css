@@ -380,3 +380,66 @@ ul li {
 	src:url('../fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-800.eot');
 	src:url('../fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-800.eot?#iefix') format('embedded-opentype'),url('../fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-800.woff2') format('woff2'),url('../fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-800.woff') format('woff'),url('../fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-800.ttf') format('truetype'),url('../fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-800.svg#OpenSans') format('svg');
 }
+
+/* BEGIN theme toggle */
+	.theme-dark .theme-icon {
+	color: #fff;
+	}
+
+	.theme-icon .icon {
+	transition: transform 0.5s ease;
+	}
+
+	.theme-dark .theme-icon .icon {
+	transform: rotate(40deg);
+	}
+
+	.theme-icon .sun {
+	transition: all 0.5s ease;
+	}
+
+	.theme-dark .theme-icon .sun {
+	r: 6;
+	}
+
+	.theme-icon .rays {
+	transition: all 0.5s ease;
+	opacity: 1;
+	}
+
+	.theme-dark .theme-icon .rays {
+	opacity: 0;
+	}
+
+	.theme-toggle-button {
+	all: unset;
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	width: 44px;
+	height: 44px;
+	border: 1px solid currentColor;
+	border-radius: 8px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	background-color: transparent;
+	color: currentColor;
+	z-index: 1000;
+	transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+	}
+
+	.theme-toggle-button:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+	}
+
+	.theme-dark .theme-toggle-button:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.theme-toggle-button svg {
+	width: 20px;
+	height: 20px;
+	}
+/* END theme toggle */

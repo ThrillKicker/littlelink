@@ -12,6 +12,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preload" as="image" href="images/avatar-dark.png">
+    <link rel="preload" as="image" href="images/avatar-light.png">
+
         
     <!-- Page Title - Change this to your name/brand (50-60 characters recommended) -->
     <title>ThrillKicker Links</title>
@@ -44,24 +47,11 @@
 <body>
 
     <!-- BEGIN theme toggle button -->
-    <button id="theme-toggle" aria-label="Toggle theme" class="theme-icon">
-      <svg class="icon" viewBox="0 0 24 24" width="32" height="32">
-        <mask id="moon-mask">
-          <rect x="0" y="0" width="100%" height="100%" fill="white"/>
-          <circle cx="12" cy="4" r="9" fill="black"/>
-        </mask>
-        <circle class="sun" cx="12" cy="12" r="6" fill="currentColor" mask="url(#moon-mask)"/>
-        <g class="rays" stroke="currentColor" stroke-width="2">
-          <line x1="12" y1="1" x2="12" y2="3"/>
-          <line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/>
-          <line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </g>
-      </svg>
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle-button" aria-label="Toggle Theme">
+        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v1.5M12 19.5V21M4.219 4.219l1.061 1.061M18.719 18.719l1.061 1.061M3 12h1.5M19.5 12H21M4.219 19.781l1.061-1.061M18.719 5.281l1.061-1.061M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z"/>
+        </svg>
     </button>
     <!-- END theme toggle button -->
 
@@ -76,6 +66,7 @@
 
               Be sure to replace the src with your own image path and update the alt text
             -->
+            <!-- Avatar -->
             <img id="avatar" class="avatar avatar--rounded" src="images/avatar-light.png" srcset="images/avatar-light@2x.png 2x" alt="ThrillKicker">
 
             <!-- Replace with your name or brand -->
@@ -496,6 +487,11 @@
     const toggleBtn = document.getElementById('theme-toggle');
     const avatarImg = document.getElementById('avatar');
 
+    const icons = {
+      sun: "M12 3v1.5M12 19.5V21M4.219 4.219l1.061 1.061M18.719 18.719l1.061 1.061M3 12h1.5M19.5 12H21M4.219 19.781l1.061-1.061M18.719 5.281l1.061-1.061M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z",
+      moon: "M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
+    };
+
     function applyTheme(theme) {
       html.className = theme;
       localStorage.setItem('theme', theme);
@@ -506,11 +502,16 @@
       }
     }
 
-    // Load stored theme
+    // Determine initial theme
     const storedTheme = localStorage.getItem('theme');
-    if (storedTheme) applyTheme(storedTheme);
+    if (storedTheme) {
+      applyTheme(storedTheme);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefersDark ? 'theme-dark' : 'theme-light');
+    }
 
-    // Toggle handler
+    // Toggle on click
     toggleBtn.addEventListener('click', () => {
       const current = html.className;
       const next = current === 'theme-dark' ? 'theme-light' : 'theme-dark';
