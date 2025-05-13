@@ -15,10 +15,7 @@
         
     <!-- Page Title - Change this to your name/brand (50-60 characters recommended) -->
     <title>ThrillKicker Links</title>
-    <!-- <link rel="icon" type="image/x-icon" href="/images/avatar.png"> -->
-    <link rel="icon" type="image/png" href="/images/avatar-light.png" media="(prefers-color-scheme: light)">
-    <link rel="icon" type="image/png" href="/images/avatar-dark.png" media="(prefers-color-scheme: dark)">
-  
+    <link rel="icon" type="image/x-icon" href="/images/avatar.png"> <!-- Update this with your own favicon -->
     
     <!-- Meta Description - Write a description (150-160 characters recommended) -->
     <meta name="description" content="ThrillKicker | Creative Utility Factory">
@@ -45,7 +42,28 @@
   </head>
 
 <body>
-    <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+
+    <!-- BEGIN theme toggle button -->
+    <button id="theme-toggle" aria-label="Toggle theme" class="theme-icon">
+      <svg class="icon" viewBox="0 0 24 24" width="32" height="32">
+        <mask id="moon-mask">
+          <rect x="0" y="0" width="100%" height="100%" fill="white"/>
+          <circle cx="12" cy="4" r="9" fill="black"/>
+        </mask>
+        <circle class="sun" cx="12" cy="12" r="6" fill="currentColor" mask="url(#moon-mask)"/>
+        <g class="rays" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </g>
+      </svg>
+    </button>
+    <!-- END theme toggle button -->
 
     <div class="container">
         <div class="column">
@@ -58,12 +76,7 @@
 
               Be sure to replace the src with your own image path and update the alt text
             -->
-            <!-- <img class="avatar avatar--rounded" src="images/avatar.png" srcset="images/avatar@2x.png 2x" alt="LittleLink"> -->
-            <picture>
-              <source srcset="images/avatar-dark.png" media="(prefers-color-scheme: dark)">
-              <source srcset="images/avatar-light.png" media="(prefers-color-scheme: light)">
-              <img class="avatar avatar--rounded" src="images/avatar-light.png" alt="LittleLink">
-            </picture>
+            <img id="avatar" class="avatar avatar--rounded" src="images/avatar-light.png" srcset="images/avatar-light@2x.png 2x" alt="ThrillKicker">
 
             <!-- Replace with your name or brand -->
             <h1>
@@ -479,24 +492,31 @@
   </div>
 
   <script>
-  const html = document.documentElement;
-  const toggleBtn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById('theme-toggle');
+    const avatarImg = document.getElementById('avatar');
 
-  // Load saved preference
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) html.className = savedTheme;
+    function applyTheme(theme) {
+      html.className = theme;
+      localStorage.setItem('theme', theme);
+      const suffix = theme === 'theme-dark' ? 'dark' : 'light';
+      if (avatarImg) {
+        avatarImg.src = `images/avatar-${suffix}.png`;
+        avatarImg.srcset = `images/avatar-${suffix}@2x.png 2x`;
+      }
+    }
 
-  toggleBtn.addEventListener('click', () => {
-    let current = html.className;
-    let next = current === 'theme-auto' ? 'theme-light' :
-               current === 'theme-light' ? 'theme-dark' :
-               'theme-auto';
+    // Load stored theme
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) applyTheme(storedTheme);
 
-    html.className = next;
-    localStorage.setItem('theme', next);
-  });
-</script>
-
+    // Toggle handler
+    toggleBtn.addEventListener('click', () => {
+      const current = html.className;
+      const next = current === 'theme-dark' ? 'theme-light' : 'theme-dark';
+      applyTheme(next);
+    });
+  </script>
 
 </body>
 
